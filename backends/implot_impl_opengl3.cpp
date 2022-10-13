@@ -295,7 +295,8 @@ void RenderHeatmap(int itemID,
 				   const ImVec2& coords_max,
 				   const ImPlotPoint& bounds_min,
 				   const ImPlotPoint& bounds_max,
-	               ImPlotScale scale,
+				   ImPlotScale scaleX,
+				   ImPlotScale scaleY,
 				   bool reverse_y,
 				   ImPlotColormap cmap,
 				   ImDrawList& DrawList)
@@ -306,8 +307,8 @@ void RenderHeatmap(int itemID,
 	data.ColormapTexID = Context.ColormapIDs[cmap];
 	data.MinValue = scale_min;
 	data.MaxValue = scale_max;
-	data.AxisLogX = scale == ImPlotScale_LogLin || scale == ImPlotScale_LogLog;
-	data.AxisLogY = scale == ImPlotScale_LinLog || scale == ImPlotScale_LogLog;
+	data.AxisLogX = scaleX = ImPlotScale_Log10;
+	data.AxisLogY = scaleY = ImPlotScale_Log10;
 	data.MinBounds = bounds_min;
 	data.MaxBounds = bounds_max;
 	data.ShaderProgram = (data_type == ImGuiDataType_Float || data_type == ImGuiDataType_Double ? &Context.ShaderFloat : &Context.ShaderInt);
